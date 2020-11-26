@@ -139,6 +139,16 @@ header a {
   margin-left: .75rem;
 }
 
+.marketing h2 a {
+  /* Убираем подчеркивание у ссылок */
+  text-decoration: none;
+}
+
+.marketing h2 a:hover {
+  /* Убираем подчеркивание у ссылок */
+  text-decoration: none;
+}
+
 /* Featurettes
 ------------------------- */
 
