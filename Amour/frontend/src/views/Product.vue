@@ -1,5 +1,5 @@
 <template>
-  <div class="container product">
+  <div class="container">
     <ProductInfo v-bind:product="product"></ProductInfo>
   </div>
 </template>

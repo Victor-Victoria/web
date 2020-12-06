@@ -17,13 +17,15 @@ body {
 }
 
 header {
-  margin: 0;
+  /* margin: 0; */
   /*отступ*/
-  margin-top: -3rem;
+  /* margin-top: -3.5rem; */
+  top: 0;
   width: 100%;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
   background: #d0bfd8;
+  position: fixed;
   z-index: 30;
 }
 
