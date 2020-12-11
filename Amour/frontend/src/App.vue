@@ -28,12 +28,17 @@
                 >
               </li>
               <li><span class="ti-search"></span></li>
-              <li>
+              <li v-if="user.isAuth()">
+                <router-link v-bind:to="{name: 'Profile'}">{{user.email}}</router-link>
+              </li>
+              <li v-else>
                 <router-link v-bind:to="{ name: 'SignIn' }"
                   ><span class="ti-user"></span
                 ></router-link>
               </li>
-              <li><span class="ti-shopping-cart"></span></li>
+              <li>
+                <CartWidget></CartWidget>
+              </li>
             </ul>
           </div>
         </nav>
@@ -56,3 +61,16 @@
 </template>
 
 
+<script>
+import CartWidget from '@/components/cart/CartWidget'
+import User from '@/components/user/user'
+
+export default {
+  components: {CartWidget},
+  data() {
+    return {
+      user: User
+    }
+  },
+}
+</script>

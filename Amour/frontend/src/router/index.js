@@ -6,6 +6,8 @@ import Delivery from '../views/Delivery.vue'
 import Contact from '../views/Contact.vue'
 import SignIn from '../views/Signin.vue'
 import CheckIn from '../views/Checkin.vue'
+import Cart from '../views/Cart.vue'
+import Profile from '../views/Profile.vue'
 import Product from '../views/Product.vue'
 
 Vue.use(VueRouter)
@@ -40,6 +42,16 @@ const routes = [
     path: '/check-in',
     name: 'CheckIn',
     component: CheckIn
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/catalog/:url',
