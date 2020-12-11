@@ -19,6 +19,12 @@ body {
     margin: auto;
 }
 
+.form-signin .form-control:focus {
+    border-color: #b98cb9;
+    outline: none;
+    box-shadow: 0 0 0 3px #D8BFD8;
+}
+
 .form-signin .checkbox {
     font-weight: 400;
 }
@@ -52,7 +58,6 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
 
 .bd-placeholder-img {
     font-size: 1.125rem;
