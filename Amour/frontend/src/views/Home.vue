@@ -19,40 +19,19 @@
 import Carousel from "../components/Carousel.vue";
 import Product from "../components/products/Product.vue";
 import About from "../components/About.vue";
+import Axios from "axios";
 
 export default {
   name: "Home",
   components: { Carousel, Product, About },
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          name: "Боди без рукавов с открытой спиной",
-          url: "боди-без-рукавов-с-открытой-спиной",
-          image: "images/t6.jpg",
-          price: 7000,
-        },
-        {
-          id: 2,
-          name: "Боди с открытой спиной",
-          url: "боди-с-открытой-спиной",
-          image: "images/t2_1.jpg",
-          price: 7800,
-        },
-        {
-          id: 3,
-          name: "Укороченное худи Amour Sport",
-          url: "укороченное-худи-amour-sport",
-          image: "images/t8_1.jpg",
-          price: 7500,
-        },
-      ],
+      items: []
     };
   },
   created() {
     const instance = Axios.create({
-      baseURL: "http://localhost:8080",
+      baseURL: 'http://localhost:1199/v1'
     });
     instance
       .get("/product/home")
