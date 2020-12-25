@@ -33,31 +33,39 @@
 
 <script>
 import User from "@/components/user/user";
+import router from "@/router";
 import Axios from "axios";
+
 export default {
   name: "SignIn",
   data() {
     return {
       email: '',
       password: '',
-      errors: {},
+      errors: {}
     }
   },
   methods: {
     signIn(e) {
+      // if (this.validate()) {
+      //   User.login({name : "Виктория", email : this.email, accessToken : '218f94b634b1e70cefe4ecf97adc05aa' });
+      //   //router.push({name: 'Home'});
+      //   e.preventDefault();      
+      // }
       if (this.validate()) {
         const instance = Axios.create({
-          baseURL: "http://localhost:1199/v1",
+          baseURL: 'http://localhost:1199/v1',
         });
 
-        instance.post("/user/login", {
+        instance.post('/user/login', {
             email: this.email,
             password: this.password
           }).then((response) => {
             User.login(response.data);
+            router.push({name: 'Home'});
           })
-          .catch((error) => {
-            console.log(error.response.data)
+          .catch((errors) => {
+            console.log(errors.response.data)
           })
       }
       e.preventDefault();

@@ -34,7 +34,7 @@ export default {
       baseURL: 'http://localhost:1199/v1'
     });
     instance
-      .get("/product/home")
+      .get('/product/home')
       .then((response) => (this.items = response.data));
   },
 };

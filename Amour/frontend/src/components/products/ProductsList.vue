@@ -72,7 +72,7 @@ export default {
     const instance = Axios.create({
       baseURL: 'http://localhost:1199/v1'
     });
-    tinstance.get("/product/catalog")
+    instance.get("/product/catalog")
       .then((response) => (this.items = response.data));
   },
 };

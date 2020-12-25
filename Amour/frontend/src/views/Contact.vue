@@ -16,10 +16,10 @@ export default {
   },
   created() {
     const instance = Axios.create({
-      baseURL: "http://localhost:1199/v1",
+      baseURL: 'http://localhost:1199/v1',
     });
     instance
-      .get("/page/contact")
+      .get('/page/contact')
       .then((response) => (this.page = response.data));
   },
 };
