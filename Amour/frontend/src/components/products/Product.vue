@@ -1,17 +1,19 @@
 <template>
   <div class="products text-center mb-5">
     <div class="form-group">
-      <img class="img-fluid" v-bind:src="product.image" />
+      <router-link
+        v-bind:to="{ name: 'Product', params: { url: product.url } }">
+        <img class="img-fluid" v-bind:src="product.image" />
+      </router-link>
     </div>
     <h2>
       <router-link
         v-bind:to="{ name: 'Product', params: { url: product.url } }"
         class="text-secondary"
-        >{{ product.name }}</router-link
-      >
+        >{{ product.name }}</router-link>
     </h2>
     <p>
-      <span class="price">{{ product.formattedPrice }} ₽</span>
+      <span class="price">{{ product.formattedPrice }}</span>
     </p>
     <p>
       <button class="btn btn-secondary" v-on:click="addToCart">Купить</button>
@@ -29,6 +31,6 @@ export default {
     addToCart() {
       CartData.add(this.product);
     },
-  },
+  }
 };
 </script>

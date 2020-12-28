@@ -4,19 +4,20 @@
       <h1 class="mb-4 font-weight-normal text-center">Авторизация</h1>
       <form @submit="signIn">
         <label for="email" class="sr-only">Email address</label>
-        <input type="email" id="email" class="form-control" v-model="email">
+        <input type="email" id="email" class="form-control" v-model="email" />
         <div class="error">{{ errors.email }}</div>
         <label for="password" class="sr-only">Password</label>
         <input
           type="password"
           id="password"
           class="form-control mb-3"
-          v-model="password">
+          v-model="password"
+        />
 
         <div class="error">{{ errors.password }}</div>
         <div class="checkbox text-center mb-2">
           <label>
-            <input type="checkbox" value="remember-me"> Запомнить меня
+            <input type="checkbox" value="remember-me" /> Запомнить меня
           </label>
         </div>
         <button class="btn btn-lg btn-secondary btn-block" type="submit">
@@ -40,35 +41,33 @@ export default {
   name: "SignIn",
   data() {
     return {
-      email: '',
-      password: '',
-      errors: {}
-    }
+      email: "",
+      password: "",
+      errors: {},
+    };
   },
   methods: {
     signIn(e) {
-      // if (this.validate()) {
-      //   User.login({name : "Виктория", email : this.email, accessToken : '218f94b634b1e70cefe4ecf97adc05aa' });
-      //   //router.push({name: 'Home'});
-      //   e.preventDefault();      
-      // }
       if (this.validate()) {
-        const instance = Axios.create({
-          baseURL: 'http://localhost:1199/v1',
-        });
-
-        instance.post('/user/login', {
-            email: this.email,
-            password: this.password
-          }).then((response) => {
-            User.login(response.data);
-            router.push({name: 'Home'});
-          })
-          .catch((errors) => {
-            console.log(errors.response.data)
-          })
+        User.login({name : "Виктория", email : this.email, accessToken : '218f94b634b1e70cefe4ecf97adc05aa' });
+        router.push({name: 'Home'});
+        e.preventDefault();
       }
-      e.preventDefault();
+      // if (this.validate()) {
+      //   this.$http
+      //     .post("/user/login", {
+      //       email: this.email,
+      //       password: this.password,
+      //     })
+      //     .then((response) => {
+      //       User.login(response.data);
+      //       router.push({ name: "Home" });
+      //     })
+      //     .catch((errors) => {
+      //       console.log(errors.response.data);
+      //     });
+      // }
+      // e.preventDefault();
     },
     validate() {
       this.errors = {};
@@ -79,7 +78,7 @@ export default {
         this.errors.password = "Заполните Пароль.";
       }
       return Object.keys(this.errors).length === 0;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -16,17 +16,9 @@ export default {
     };
   },
   created() {
-    const url = this.$route.params.url;
-    const result = {
-      id: 3,
-      name: "Худи Amour Sport",
-      url: url,
-      image: "images/t8.jpg",
-      info:
-        "Мы любим это укороченное худи за лаконизм стиля. Необработанный нижний край усиливает ноту casual в образе.",
-      price: 7500,
-    };
-    this.product = result;
-  },
+      const url = this.$route.params.url
+      this.$http.get('/product/info', {params: {url: url}})
+        .then((response) => this.product = response.data)
+    }
 };
 </script>

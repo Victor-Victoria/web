@@ -30,10 +30,7 @@ export default {
     };
   },
   created() {
-    const instance = Axios.create({
-      baseURL: 'http://localhost:1199/v1'
-    });
-    instance
+    this.$http
       .get('/product/home')
       .then((response) => (this.items = response.data));
   },

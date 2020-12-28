@@ -27,7 +27,7 @@
                   >Контакты</router-link
                 >
               </li>
-              <li><span class="ti-search"></span></li>
+              <!-- <li><span class="ti-search"></span></li> -->
               <li v-if="user.isAuth()">
                 <router-link v-bind:to="{name: 'Profile'}">{{user.email}}</router-link>
               </li>

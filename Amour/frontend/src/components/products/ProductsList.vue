@@ -2,6 +2,17 @@
   <div class="row">
     <div class="col-md-3">
       <div class="filter">
+        <h5>Категория</h5>
+        <ul class="list-unstyled">
+          <li v-for="category in filter.categories" :key="category.id">
+            <label>
+              <input type="checkbox"> {{category.name}}
+            </label>
+          </li>
+        </ul>
+        <hr />
+      </div>
+      <div class="filter">
         <h5>Цвет</h5>
         <ul class="list-unstyled">
           <li v-for="colour in filter.colors" :key="colour.id">
@@ -19,20 +30,6 @@
         </ul>
         <hr />
       </div>
-      <!-- <div class="filter">
-              <h5>Длина</h5>
-              <ul>
-                  
-              </ul>
-              <hr>
-          </div> -->
-      <!-- <div class="filter">
-              <h5>Категория</h5>
-              <ul>
-                  
-              </ul>
-              <hr>
-          </div> -->
       <div class="filter">
         <h5>Цена</h5>
         <div class="d-flex">
@@ -64,16 +61,25 @@ export default {
       filter: {
         colors: ["Бежевый", "Серый", "Черный"],
         sizes: ["S", "M", "L"],
+        categories: []
       },
-      items: []
+      items: [],
     };
   },
   created() {
-    const instance = Axios.create({
-      baseURL: 'http://localhost:1199/v1'
-    });
-    instance.get("/product/catalog")
+    this.$http
+      .get("/category/list")
+      .then((response) => (this.filter.categories = response.data));
+    this.$http
+      .get("/product/catalog")
       .then((response) => (this.items = response.data));
-  },
+  }
+  // created() {
+  //   const instance = Axios.create({
+  //     baseURL: 'http://localhost:1199/v1'
+  //   });
+  //   instance.get("/product/catalog")
+  //     .then((response) => (this.items = response.data));
+  // }
 };
 </script>

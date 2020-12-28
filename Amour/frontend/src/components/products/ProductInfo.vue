@@ -1,14 +1,32 @@
 <template>
-  <div class="product">
+  <section class="product row">
+    <div class="col-md-5">
+      <img class="img-fluid" v-bind:src="product.image" />
+    </div>
+    <div class="col-md-7">
+      <div class="product-description">
+        <h1>{{ product.name }}</h1>
+        <p
+          v-for="propertyValue in product.propertiesValues"
+          :key="propertyValue.id"
+        >
+          <span v-if="propertyValue.property.id === 3">{{
+            propertyValue.value
+          }}</span>
+        </p>
+      </div>
+
+      <!-- <div class="product">
     <div class="left-column">
       <img v-bind:src="product.image">
     </div>
 
     <div class="right-column">
       <div class="product-description">
-        <h1>{{ product.name }}</h1>
-        <p>{{product.info}}</p>
-      </div>
+        <h1>{{ product.name }}</h1> -->
+      <!-- <p class="lead">{{product.category.name}}</p> -->
+      <!-- <p>{{product.info}}</p>
+      </div> -->
 
       <div class="product-configuration">
         <div class="product-color">
@@ -58,19 +76,39 @@
             <button>L</button>
           </div>
         </div>
+
+        <table class="table table-bordered product-description">
+          <tbody>
+            <tr v-for="propertyValue in product.propertiesValues" :key="propertyValue.id">
+              <td v-if="propertyValue.property.id != 3">
+                <b>{{ propertyValue.property.name }}</b>
+              </td>
+              <td v-if="propertyValue.property.id != 3">
+                {{ propertyValue.value }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="product-price">
-        <span>{{ product.price }} ₽</span>
-        <a class="btn btn-secondary" href="#" role="button">Купить</a>
+        <span>{{ product.formattedPrice }}</span>
+        <a><button class="btn btn-secondary" v-on:click="addToCart">Купить</button></a>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-  export default {
-    name: "ProductInfo",
-    props: ['product']
-  }
+import CartData from "@/components/cart/cart";
+
+export default {
+  name: "ProductInfo",
+  props: ["product"],
+  methods: {
+    addToCart() {
+      CartData.add(this.product);
+    },
+  },
+};
 </script>
