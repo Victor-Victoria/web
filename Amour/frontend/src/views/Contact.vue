@@ -11,7 +11,7 @@ export default {
   name: "Contact",
   data() {
     return {
-      page: {},
+      page: {}
     };
   },
   created() {

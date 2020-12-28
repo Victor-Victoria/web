@@ -13,7 +13,7 @@ class UserController extends ApiController
         $form->load(\Yii::$app->request->getBodyParams(), '');
 
         if ($form->validate()) {
-            $form->login();
+            //$form->login();
             return $form->getUser();
         }
 

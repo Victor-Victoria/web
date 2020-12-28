@@ -1,6 +1,8 @@
 # phpstorm project files
 .idea
 
+/frontend/node_modules
+
 # netbeans project files
 nbproject
 

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=amour;dbname=amour',
+    'class' => '\yii\db\Connection',
+    'dsn' => 'mysql:host=mysql;dbname=amour',
     'username' => 'amour',
     'password' => 'amour<3',
     'charset' => 'utf8',

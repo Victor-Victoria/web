@@ -11,7 +11,7 @@ export default {
   name: "Delivery",
   data() {
     return {
-      page: {},
+      page: {}
     };
   },
   created() {

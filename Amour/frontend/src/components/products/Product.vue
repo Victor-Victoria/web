@@ -11,7 +11,7 @@
       >
     </h2>
     <p>
-      <span class="price">{{ product.price }} ₽</span>
+      <span class="price">{{ product.formattedPrice }} ₽</span>
     </p>
     <p>
       <button class="btn btn-secondary" v-on:click="addToCart">Купить</button>

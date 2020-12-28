@@ -10,15 +10,15 @@
       </div>
 
       <hr class="featurette-divider" />
-      <About v-bind:product="item"></About>
+      <About v-bind:about="item"></About>
     </div>
   </div>
 </template>
 
 <script>
-import Carousel from "../components/Carousel.vue";
-import Product from "../components/products/Product.vue";
-import About from "../components/About.vue";
+import Carousel from "@/components/Carousel.vue";
+import Product from "@/components/products/Product.vue";
+import About from "@/components/About.vue";
 import Axios from "axios";
 
 export default {

@@ -79,7 +79,7 @@ export default {
         this.errors.password = "Заполните Пароль.";
       }
       return Object.keys(this.errors).length === 0;
-    },
-  },
+    }
+  }
 };
 </script>
