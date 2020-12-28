@@ -69,10 +69,17 @@
     line-height: 24px;
 }
 
+.product-description td {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
 /* Product Configuration */
 
 .product-color span, .cable-config span {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #86939E;
     margin-bottom: 20px;
