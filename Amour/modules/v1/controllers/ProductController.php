@@ -3,6 +3,7 @@
 namespace app\modules\v1\controllers;
 
 use app\modules\v1\models\Product;
+use yii\web\NotFoundHttpException;
 use Yii;
 
 class ProductController extends ApiController
@@ -35,7 +36,7 @@ class ProductController extends ApiController
 
         $products = Product::find()
             ->orderBy(['createdAt' => SORT_DESC])
-            ->where(['categoryId' => 1])
+            //->where(['categoryId' => 1])
             ->limit(3)
             ->all();
 
@@ -103,6 +104,20 @@ class ProductController extends ApiController
         $model->save();
 
         return $model;
+    }
+
+    public function actionInfo($url)
+    {
+        $product = Product::find()
+            ->with(['category', 'propertiesValues', 'propertiesValues.property'])
+            ->where(['url' => $url])
+            ->one();
+
+        if ($product === null) {
+            throw new NotFoundHttpException('Товар не найден');
+        }
+
+        return $product;
     }
 
 
