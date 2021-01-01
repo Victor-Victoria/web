@@ -36,6 +36,7 @@
 import User from "@/components/user/user";
 import router from "@/router";
 import Axios from "axios";
+import MD5 from "crypto-js/md5";
 
 export default {
   name: "SignIn",
@@ -43,42 +44,39 @@ export default {
     return {
       email: "",
       password: "",
-      errors: {},
+      errors: {}
     };
   },
   methods: {
-    signIn(e) {
-      if (this.validate()) {
-        User.login({name : "Виктория", email : this.email, accessToken : '218f94b634b1e70cefe4ecf97adc05aa' });
-        router.push({name: 'Home'});
+      signIn(e) {
+        if (this.validate()) {
+          this.$http
+          .get("/user/login", {
+            params: {
+              email: this.email,
+              password: this.password
+            }
+          })
+          .then((response) => {
+            User.login(response.data);
+            router.push({ name: "Home" });
+          })
+          .catch((errors) => {
+            console.log(errors);
+          });
         e.preventDefault();
-      }
-      // if (this.validate()) {
-      //   this.$http
-      //     .post("/user/login", {
-      //       email: this.email,
-      //       password: this.password,
-      //     })
-      //     .then((response) => {
-      //       User.login(response.data);
-      //       router.push({ name: "Home" });
-      //     })
-      //     .catch((errors) => {
-      //       console.log(errors.response.data);
-      //     });
-      // }
-      // e.preventDefault();
-    },
-    validate() {
-      this.errors = {};
-      if (this.email.trim().length === 0) {
-        this.errors.email = "Заполните Email.";
-      }
-      if (this.password.trim().length === 0) {
-        this.errors.password = "Заполните Пароль.";
-      }
-      return Object.keys(this.errors).length === 0;
-    },
-  },
+        }
+      },
+      validate() {
+        this.errors = {};
+        if (this.email.trim().length === 0) {
+          this.errors.email = "Заполните Email.";
+        }
+        if (this.password.trim().length === 0) {
+          this.errors.password = "Заполните Пароль.";
+        }
+        return Object.keys(this.errors).length === 0;
+      },
+    }
 };
 </script>

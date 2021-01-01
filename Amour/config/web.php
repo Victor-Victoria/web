@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -14,7 +15,12 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'xpuDOpTtFV52MrcZYbHTe0bwoQo4A3gX',
+            'cookieValidationKey' => 'O8Xj9QTH3FxPnd766zyGzXmky3B0RgTA',
+            // 'enableCookieValidation' => false,
+            // 'cookieValidationKey' => '',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser'
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -48,6 +54,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'api/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>'
             ],
         ],
     ],

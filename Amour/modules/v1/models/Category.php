@@ -59,6 +59,6 @@ class Category extends BaseModel
      */
     public function getProducts()
     {
-        return $this->hasMany(Products::class, ['categoryId' => 'id']);
+        return $this->hasMany(Product::class, ['categoryId' => 'id']);
     }
 }

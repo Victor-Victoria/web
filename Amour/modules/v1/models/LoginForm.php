@@ -2,15 +2,13 @@
 
 namespace app\modules\v1\models;
 
-use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class LoginForm extends Model
-{
+class LoginForm extends ActiveRecord {
     public $email;
     public $password;
 
-    public function rules()
-    {
+    public function rules() {
         return [
             [['email', 'password'], 'required'],
             [['email'], 'email', 'message' => 'Некорректный Email.'],
@@ -18,18 +16,16 @@ class LoginForm extends Model
         ];
     }
 
-    public function login()
-    {
+    public function login() {
         // TODO: сделать авторизацию
     }
 
-    public function getUser()
-    {
+    public function getUser() {
+        $str = strpos($this->email, "@");
         return [
-            'id' => 1,
-            'name' => 'Виктория',
+            'name' => substr($this->email, 0, $str),
             'email' => $this->email,
-            'accessToken' => md5(microtime(true))
+            'accessToken' => md5(microtime(null))
         ];
     }
 }
