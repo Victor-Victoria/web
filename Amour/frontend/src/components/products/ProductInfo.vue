@@ -1,32 +1,15 @@
 <template>
   <section class="product row">
     <div class="col-md-5">
-      <img class="img-fluid" v-bind:src="product.image" />
+      <img class="img-fluid" v-bind:src="product.image">
     </div>
     <div class="col-md-7">
       <div class="product-description">
         <h1>{{ product.name }}</h1>
-        <p
-          v-for="propertyValue in product.propertiesValues"
-          :key="propertyValue.id"
-        >
-          <span v-if="propertyValue.property.id === 3">{{
-            propertyValue.value
-          }}</span>
+        <p v-for="propertyValue in product.propertiesValues" :key="propertyValue.id">
+          <span v-if="propertyValue.property.id === 3">{{propertyValue.value}}</span>
         </p>
       </div>
-
-      <!-- <div class="product">
-    <div class="left-column">
-      <img v-bind:src="product.image">
-    </div>
-
-    <div class="right-column">
-      <div class="product-description">
-        <h1>{{ product.name }}</h1> -->
-      <!-- <p class="lead">{{product.category.name}}</p> -->
-      <!-- <p>{{product.info}}</p>
-      </div> -->
 
       <div class="product-configuration">
         <div class="product-color">
@@ -101,13 +84,36 @@
 
 <script>
 import CartData from "@/components/cart/cart";
+import User from "@/components/user/user";
+import Order from "@/components/cart/order";
+import router from "@/router";
 
 export default {
   name: "ProductInfo",
   props: ["product"],
+  data() {
+    return {
+      userId: 0,
+      productId: 0,
+      price: 0,
+      errors: {},
+    };
+  },
   methods: {
     addToCart() {
       CartData.add(this.product);
+      if (User.isAuth()) {
+        this.$http
+          .post("/order/create", {
+            userId: User.id,
+            productId: this.product.id,
+            price: this.product.price
+          })
+          .then((response) => {
+            Order.add(response.data);
+            })
+          .catch((errors) => {console.log(errors)});
+      }
     },
   },
 };

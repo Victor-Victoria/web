@@ -2,29 +2,31 @@
 
 namespace app\modules\v1\models;
 
+use app\modules\v1\models\BaseModel;
+
 use Yii;
 
 /**
- * This is the model class for table "products_properties".
+ * This is the model class for table "orders".
  *
  * @property int $id
- * @property int $productId Товар
- * @property int $propertyId Свойство
- * @property string $value Значение
- * @property string $createdAt Дата создания
+ * @property int $productId Продукт
+ * @property int $userId Пользователь
+ * @property float|null $price Сумма заказа
+ * @property string|null $createdAt Дата создания
  * @property string|null $updatedAt Дата изменения
  *
  * @property Product $product
- * @property Property $property
+ * @property User $user
  */
-class ProductProperty extends BaseModel
+class Order extends BaseModel
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'products_properties';
+        return 'orders';
     }
 
     /**
@@ -33,13 +35,18 @@ class ProductProperty extends BaseModel
     public function rules()
     {
         return [
-            [['productId', 'propertyId', 'value'], 'required'],
-            [['productId', 'propertyId'], 'integer'],
-            [['value'], 'string'],
+            [['productId', 'userId'], 'required'],
+            [['productId', 'userId'], 'integer'],
+            [['price'], 'number'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['productId'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['productId' => 'id']],
-            [['propertyId'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['propertyId' => 'id']],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'id']],
         ];
+    }
+
+    public function behaviors()
+    {
+        return parent::behaviors();
     }
 
     /**
@@ -49,9 +56,9 @@ class ProductProperty extends BaseModel
     {
         return [
             'id' => 'ID',
-            'productId' => 'Товар',
-            'propertyId' => 'Свойство',
-            'value' => 'Значение',
+            'productId' => 'Продукт',
+            'userId' => 'Пользователь',
+            'price' => 'Сумма заказа',
             'createdAt' => 'Дата создания',
             'updatedAt' => 'Дата изменения',
         ];
@@ -68,21 +75,22 @@ class ProductProperty extends BaseModel
     }
 
     /**
-     * Gets query for [[Property]].
+     * Gets query for [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getProperty()
+    public function getUser()
     {
-        return $this->hasOne(Property::className(), ['id' => 'propertyId']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
     {
         return [
             'id' => $this->id,
-            'value' => $this->value,
-            'property' => $this->property
+            'userId' => $this->userId,
+            'productId' => $this->productId,
+            'price' => $this->price
         ];
     }
 }

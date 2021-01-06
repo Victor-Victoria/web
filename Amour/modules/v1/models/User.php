@@ -65,8 +65,17 @@ class User extends BaseModel
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password
+            'password' => $this->password,
+            'orders' => $this->orders
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::class, ['userId' => 'id']);
     }
 
     public function checkPass($password) {

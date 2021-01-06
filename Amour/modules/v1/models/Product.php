@@ -91,7 +91,8 @@ class Product extends BaseModel
             'url' => $this->url,
             'createdAt' => $this->createdAt,
             'category' => $this->category,
-            'propertiesValues' => $this->propertiesValues
+            'propertiesValues' => $this->propertiesValues,
+            //'orders' => $this->orders
         ];
     }
 
@@ -119,4 +120,13 @@ class Product extends BaseModel
     {
         return $this->hasMany(ProductProperty::class, ['productId' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::class, ['productId' => 'id']);
+    }
+
 }
