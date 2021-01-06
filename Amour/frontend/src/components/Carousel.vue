@@ -13,7 +13,6 @@
             <h1>Смотреть все модели Amour</h1>
             <p>Сравнить и выбрать</p>
             <p>
-              <!-- <a class="btn btn-lg btn-light" href="#" role="button">Перейти в каталог</a> -->
               <router-link
                 v-bind:to="{ name: 'Catalog' }"
                 class="btn btn-lg btn-light"
@@ -29,9 +28,8 @@
             <h1>NEW! Боди Amour</h1>
             <p>Доступно к заказу</p>
             <p>
-              <!-- <a class="btn btn-lg btn-light" href="#" role="button">Смотреть</a> -->
               <router-link
-                v-bind:to="{ name: 'Product' }"
+                v-bind:to="{ name: 'Product', params: { url: 'bodi-s-otkrytoj-spinoj' } }"
                 class="btn btn-lg btn-light"
                 role="button">Смотреть</router-link>
             </p>

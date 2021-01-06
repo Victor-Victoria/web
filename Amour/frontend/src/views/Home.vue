@@ -10,7 +10,7 @@
       </div>
 
       <hr class="featurette-divider" />
-      <About v-bind:about="item"></About>
+      <About></About>
     </div>
   </div>
 </template>

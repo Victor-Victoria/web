@@ -7,6 +7,7 @@
 
 <script>
   import CartData from '@/components/cart/cart'
+
   export default {
     name: "CartWidget",
     data() {
@@ -15,6 +16,6 @@
       return {
         cart: data
       }
-    }
+    },
   }
 </script>

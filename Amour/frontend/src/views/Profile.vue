@@ -3,7 +3,7 @@
     <h1 class="font-weight-normal mb-3">{{user.name}}</h1>
     <h4 class="font-weight-normal">{{user.email}}</h4>
     <hr>
-    <router-link :to="{name: 'Home'}">
+    <router-link :to="{name: 'SignIn'}">
       <button class="btn btn-purple" v-on:click="logout">Выйти</button>
     </router-link>
   </div>
@@ -21,7 +21,6 @@
     methods: {
       logout() {
         User.logout()
-        //location.reload()
       }
     }
   }
