@@ -65,7 +65,7 @@ class User extends BaseModel
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
+            // 'password' => $this->password,
             'orders' => $this->orders
         ];
     }

@@ -87,7 +87,7 @@ export default {
           .post("/user/registration", {
             name: this.name,
             email: this.email,
-            password: this.password
+            password: MD5(this.password).toString()
           })
           .then((response) => {
             User.login(response.data);

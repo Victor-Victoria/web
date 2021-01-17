@@ -51,11 +51,9 @@ export default {
       signIn(e) {
         if (this.validate()) {
           this.$http
-          .get("/user/login", {
-            params: {
-              email: this.email,
-              password: this.password
-            }
+          .post("/user/login", {
+            email: this.email,
+            password: MD5(this.password).toString()
           })
           .then((response) => {
             User.login(response.data);
